@@ -558,6 +558,21 @@
       color: var(--primary);
       margin-bottom: 16px;
     }
+    .destaque-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: var(--radius) var(--radius) 0 0;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .destaque-card:hover .destaque-img { transform: scale(1.05); }
+    .destaque-img-wrap {
+      overflow: hidden;
+      border-radius: var(--radius) var(--radius) 0 0;
+      margin: -1.5rem -1.5rem 1.2rem -1.5rem;
+    }
+    /* keep legacy selector for safety */
     .destaque-emoji {
       font-size: 4rem;
       display: block;
@@ -851,6 +866,47 @@
     .stat-box:hover {
       border-color: var(--primary);
       box-shadow: var(--glow);
+    }
+    /* ===========================
+       HERO IMAGE
+    =========================== */
+    #hero { position: relative; display: flex; align-items: center; justify-content: center; }
+    .hero-img-wrap {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 50%;
+      overflow: hidden;
+      display: none;
+    }
+    @media (min-width: 1024px) {
+      #hero { justify-content: flex-start; padding-left: 8%; }
+      .hero-img-wrap { display: block; }
+      .hero-content { max-width: 55%; }
+    }
+    .hero-burger-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.85;
+    }
+    .hero-img-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #000 0%, transparent 40%, transparent 60%, #000 100%),
+                  linear-gradient(to bottom, #000 0%, transparent 15%, transparent 85%, #000 100%);
+      pointer-events: none;
+    }
+
+    /* ===========================
+       STAT BOXES — icon images
+    =========================== */
+    .stat-box .stat-icon {
+      width: 48px; height: 48px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      display: block;
+      border: 2px solid var(--primary);
     }
     .stat-box .stat-emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
     .stat-box .stat-val {
@@ -1251,6 +1307,10 @@
           <span class="trust-item">🏍️ Entrega na sua porta</span>
         </div>
       </div>
+      <div class="hero-img-wrap" aria-hidden="true">
+        <img src="images/hero-burger.jpg" alt="Hambúrguer artesanal Prime Grill" class="hero-burger-img" />
+        <div class="hero-img-glow"></div>
+      </div>
       <div class="hero-scroll" aria-hidden="true">
         <span>ROLAR</span>
         <div class="scroll-arrow"></div>
@@ -1272,8 +1332,10 @@
       <div class="destaques-grid">
 
         <article class="destaque-card fade-in-up" aria-label="Triplo Cheddar">
+          <div class="destaque-img-wrap">
+            <img src="images/triplo-cheddar.jpg" alt="Triplo Cheddar — três hambúrgueres com cheddar derretido e bacon" class="destaque-img" loading="lazy" />
+          </div>
           <div class="destaque-badge">⭐ N°1 em vendas</div>
-          <span class="destaque-emoji" aria-hidden="true">🍔</span>
           <div class="destaque-name">TRIPLO CHEDDAR</div>
           <p class="destaque-desc">O queridinho do público — três camadas de sabor com cheddar derretido e molho especial da casa</p>
           <div class="destaque-price">R$ 22,00 <span>combo</span></div>
@@ -1282,8 +1344,10 @@
         </article>
 
         <article class="destaque-card fade-in-up" aria-label="X-Duplo">
+          <div class="destaque-img-wrap">
+            <img src="images/x-duplo.jpg" alt="X-Duplo — dois hambúrgueres com queijo mussarela, ovo e bacon" class="destaque-img" loading="lazy" />
+          </div>
           <div class="destaque-badge">🔥 Muito pedido</div>
-          <span class="destaque-emoji" aria-hidden="true">🍔</span>
           <div class="destaque-name">X-DUPLO</div>
           <p class="destaque-desc">Dupla dose de prazer — dois hambúrgueres suculentos com todos os ingredientes que você ama</p>
           <div class="destaque-price">R$ 18,00</div>
@@ -1292,8 +1356,10 @@
         </article>
 
         <article class="destaque-card fade-in-up" aria-label="Duplo Cheddar">
+          <div class="destaque-img-wrap">
+            <img src="images/duplo-cheddar.jpg" alt="Duplo Cheddar — dois hambúrgueres com cheddar e molho da casa" class="destaque-img" loading="lazy" />
+          </div>
           <div class="destaque-badge">💛 Clássico</div>
-          <span class="destaque-emoji" aria-hidden="true">🍔</span>
           <div class="destaque-name">DUPLO CHEDDAR</div>
           <p class="destaque-desc">Molho da casa irresistível — o equilíbrio perfeito entre o cheddar e o sabor artesanal Prime</p>
           <div class="destaque-price">R$ 16,00</div>
@@ -1474,7 +1540,7 @@
       <div class="steps-row">
         <div class="step fade-in-up">
           <div class="step-circle" aria-hidden="true">
-            📱
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
             <div class="step-num">1</div>
           </div>
           <div class="step-title">ESCOLHA</div>
@@ -1482,7 +1548,7 @@
         </div>
         <div class="step fade-in-up">
           <div class="step-circle" aria-hidden="true">
-            💬
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <div class="step-num">2</div>
           </div>
           <div class="step-title">ENVIE</div>
@@ -1490,7 +1556,7 @@
         </div>
         <div class="step fade-in-up">
           <div class="step-circle" aria-hidden="true">
-            🏍️
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <div class="step-num">3</div>
           </div>
           <div class="step-title">RECEBA</div>
@@ -1499,7 +1565,9 @@
       </div>
 
       <div class="payment-box fade-in-up" role="note" aria-label="Forma de pagamento">
-        <span class="payment-icon" aria-hidden="true">💳</span>
+        <span class="payment-icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </span>
         <div class="payment-title">Aceitamos somente PIX</div>
         <p class="payment-sub">Pagamento simples, rápido e seguro. Após confirmar o pedido, enviaremos a chave PIX.</p>
       </div>
@@ -1526,22 +1594,22 @@
         </div>
         <div class="stats-grid fade-in-up" aria-label="Nossos diferenciais">
           <div class="stat-box">
-            <span class="stat-emoji" aria-hidden="true">🔥</span>
+            <img src="images/triplo-cheddar.jpg" alt="" class="stat-icon" aria-hidden="true" />
             <span class="stat-val">100%</span>
             <span class="stat-label">Artesanal</span>
           </div>
           <div class="stat-box">
-            <span class="stat-emoji" aria-hidden="true">🥩</span>
+            <img src="images/x-bacon.jpg" alt="" class="stat-icon" aria-hidden="true" />
             <span class="stat-val">Frescos</span>
             <span class="stat-label">Ingredientes</span>
           </div>
           <div class="stat-box">
-            <span class="stat-emoji" aria-hidden="true">🏍️</span>
+            <img src="images/batata-maluca.jpg" alt="" class="stat-icon" aria-hidden="true" />
             <span class="stat-val">Rápido</span>
             <span class="stat-label">Delivery</span>
           </div>
           <div class="stat-box">
-            <span class="stat-emoji" aria-hidden="true">😋</span>
+            <img src="images/duplo-cheddar.jpg" alt="" class="stat-icon" aria-hidden="true" />
             <span class="stat-val">Sempre</span>
             <span class="stat-label">Gostoso</span>
           </div>
